@@ -28,9 +28,9 @@ psql -c 'CREATE DATABASE dbt_tutorial;'
 psql -d dbt_tutorial -f schema.sql
 # load data
 CWD="$(cd "$(dirname "$1")" && pwd -P)/$(basename "$1")"
-psql -d dbt_tutorial -c "COPY stripe.stripe_payments FROM '$CWD/data/stripe_payments.csv' DELIMITER ',' CSV HEADER"
-psql -d dbt_tutorial -c "COPY jaffle_shop.customers FROM '$CWD/data/jaffle_shop_customers.csv' DELIMITER ',' CSV HEADER"
-psql -d dbt_tutorial -c "COPY jaffle_shop.orders FROM '$CWD/data/jaffle_shop_orders.csv' DELIMITER ',' CSV HEADER"
+psql -d dbt_tutorial -c "COPY stripe.stripe_payments(id, orderid, paymentmethod, status, amount, created) FROM '$CWD/data/stripe_payments.csv' DELIMITER ',' CSV HEADER"
+psql -d dbt_tutorial -c "COPY jaffle_shop.customers(id, first_name, last_name) FROM '$CWD/data/jaffle_shop_customers.csv' DELIMITER ',' CSV HEADER"
+psql -d dbt_tutorial -c "COPY jaffle_shop.orders(id, user_id, order_date, status) FROM '$CWD/data/jaffle_shop_orders.csv' DELIMITER ',' CSV HEADER"
 ```
 
 ## Configure Profile
